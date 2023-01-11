@@ -52,7 +52,7 @@ class TheMovieAPIController extends Controller
      *      parameter="Movie--title",
      *      in="query",
      *      name="title",
-     *      required=true,
+     *      required=false,
      *      description="title of Movie",
      *      @OA\Schema(
      *          type="string",
@@ -63,7 +63,7 @@ class TheMovieAPIController extends Controller
      *      parameter="Movie--page",
      *      in="query",
      *      name="page",
-     *      required=true,
+     *      required=false,
      *      description="page of TMDB api",
      *      @OA\Schema(
      *          type="integer",

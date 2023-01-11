@@ -19,12 +19,12 @@ class TheMovieAPIService extends Service
         }
     }
 
-    private function replace($request): string
+    public function replace($request): string
     {
         return str_replace(" ", "+", $request->title);
     }
 
-    private function convertTMDBResultArrayInMovie($tmdbResults): array
+    public function convertTMDBResultArrayInMovie($tmdbResults): array
     {
         $movies = [];
         foreach ($tmdbResults['results'] as $result) {

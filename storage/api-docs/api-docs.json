@@ -358,7 +358,7 @@
                         "name": "title",
                         "in": "query",
                         "description": "title of Movie",
-                        "required": true,
+                        "required": false,
                         "schema": {
                             "type": "string",
                             "example": "titanic"
@@ -369,7 +369,7 @@
                         "name": "page",
                         "in": "query",
                         "description": "page of TMDB api",
-                        "required": true,
+                        "required": false,
                         "schema": {
                             "type": "integer",
                             "example": "1"
