@@ -1,0 +1,705 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Documentation",
+        "description": "API to create movies",
+        "contact": {
+            "email": "icaro.barreto166@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/genre": {
+            "get": {
+                "tags": [
+                    "Genre"
+                ],
+                "summary": "Get list of Genre",
+                "description": "Returns list of Genre",
+                "operationId": "indexGenre",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonResponseFindGenre"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Genre not found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Genre"
+                ],
+                "summary": "Insert a new Genre",
+                "description": "Insert a new Genre",
+                "operationId": "storeGenre",
+                "requestBody": {
+                    "description": "Genre to create",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            },
+                            "example": {
+                                "name": "Suspense"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Genre created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonResponseDefaultGenre"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation exception"
+                    }
+                }
+            }
+        },
+        "/api/genre/{genre_id}": {
+            "get": {
+                "tags": [
+                    "Genre"
+                ],
+                "summary": "Get a Genre by his id",
+                "description": "Returns list of Genre",
+                "operationId": "showGenre",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Genre--id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonResponseFindByIdGenre"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Genre not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Genre"
+                ],
+                "summary": "Update an existing Genre",
+                "description": "Update an existing Genre",
+                "operationId": "updateGenre",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Genre--id"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Genre to update",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            },
+                            "example": {
+                                "name": "Suspense"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonResponseDefaultGenre"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Genre not found"
+                    },
+                    "422": {
+                        "description": "Validation exception"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Genre"
+                ],
+                "summary": "Delete a Genre",
+                "description": "Delete a Genre",
+                "operationId": "destroyGenre",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Genre--id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonResponseDefaultGenre"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Genre not found"
+                    }
+                }
+            }
+        },
+        "/api/movie": {
+            "get": {
+                "tags": [
+                    "Movie"
+                ],
+                "summary": "Get list of Movie",
+                "description": "Returns list of Movie",
+                "operationId": "indexMovie",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonResponseFind"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Movie not found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Movie"
+                ],
+                "summary": "Insert a new Movie",
+                "description": "Insert a new Movie",
+                "operationId": "storeMovie",
+                "requestBody": {
+                    "description": "Movie to create",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            },
+                            "example": {
+                                "title": "Titanic",
+                                "release_date": "1994-06-23",
+                                "overview": "Um artista pobre e uma jovem rica se conhecem e se apaixonam na fatídica jornada do Titanic",
+                                "genre_ids": [
+                                    10749
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Movie created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonResponseDefault"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation exception"
+                    }
+                }
+            }
+        },
+        "/api/movie/{movie_id}": {
+            "get": {
+                "tags": [
+                    "Movie"
+                ],
+                "summary": "Get a Movie by his id",
+                "description": "Returns list of Movie",
+                "operationId": "showMovie",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Movie--id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonResponseFindById"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Movie not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Movie"
+                ],
+                "summary": "Update an existing Movie",
+                "description": "Update an existing Movie",
+                "operationId": "updateMovie",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Movie--id"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Movie to update",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            },
+                            "example": {
+                                "release_date": "1995-06-23"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonResponseDefault"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Movie not found"
+                    },
+                    "422": {
+                        "description": "Validation exception"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Movie"
+                ],
+                "summary": "Delete a Movie",
+                "description": "Delete a Movie",
+                "operationId": "destroyMovie",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Movie--id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonResponseDefault"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Movie not found"
+                    }
+                }
+            }
+        },
+        "/api/the-movie-api": {
+            "get": {
+                "tags": [
+                    "TMDB"
+                ],
+                "summary": "Get movie list from tmdb api",
+                "description": "Returns list of Movie from tmdb api",
+                "operationId": "indexTMDB",
+                "parameters": [
+                    {
+                        "parameter": "Movie--title",
+                        "name": "title",
+                        "in": "query",
+                        "description": "title of Movie",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "titanic"
+                        }
+                    },
+                    {
+                        "parameter": "Movie--page",
+                        "name": "page",
+                        "in": "query",
+                        "description": "page of TMDB api",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "title": "success",
+                                            "description": "success find movies",
+                                            "type": "boolean",
+                                            "readOnly": "true",
+                                            "example": "true"
+                                        },
+                                        "data": {
+                                            "title": "data",
+                                            "type": "array",
+                                            "items": {
+                                                "example": {
+                                                    "page": 1,
+                                                    "result": [
+                                                        {
+                                                            "id": 1,
+                                                            "title": "Titanic",
+                                                            "release_date": "2002-07-04",
+                                                            "overview": "Um artista pobre e uma jovem rica se conhecem e se apaixonam na fatídica jornada do Titanic.",
+                                                            "genre": [
+                                                                1,
+                                                                2
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "total_pages": 1
+                                                }
+                                            }
+                                        },
+                                        "message": {
+                                            "title": "message",
+                                            "description": "success message",
+                                            "type": "string",
+                                            "readOnly": "true",
+                                            "example": "sucesso."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Movie not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Genre": {
+                "title": "Genre",
+                "description": "Genre model",
+                "required": [],
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id of Genre",
+                        "type": "integer",
+                        "readOnly": "true",
+                        "example": "1"
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "name of Genre",
+                        "type": "string",
+                        "readOnly": "true",
+                        "example": "Romance"
+                    }
+                },
+                "type": "object"
+            },
+            "JsonResponseFindByIdGenre": {
+                "title": "JsonResponseFind",
+                "properties": {
+                    "success": {
+                        "title": "success",
+                        "description": "success find movies",
+                        "type": "boolean",
+                        "readOnly": "true",
+                        "example": "true"
+                    },
+                    "data": {
+                        "title": "data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Genre"
+                        }
+                    },
+                    "message": {
+                        "title": "message",
+                        "description": "success message",
+                        "type": "string",
+                        "readOnly": "true",
+                        "example": "sucesso."
+                    }
+                },
+                "type": "object"
+            },
+            "JsonResponseFindGenre": {
+                "title": "JsonResponseFind",
+                "properties": {
+                    "success": {
+                        "title": "success",
+                        "description": "success find movies",
+                        "type": "boolean",
+                        "readOnly": "true",
+                        "example": "true"
+                    },
+                    "data": {
+                        "$ref": "#/components/schemas/Genre"
+                    },
+                    "message": {
+                        "title": "message",
+                        "description": "success message",
+                        "type": "string",
+                        "readOnly": "true",
+                        "example": "sucesso."
+                    }
+                },
+                "type": "object"
+            },
+            "JsonResponseDefaultGenre": {
+                "title": "JsonResponseFind",
+                "properties": {
+                    "success": {
+                        "title": "success",
+                        "description": "success find movies",
+                        "type": "boolean",
+                        "readOnly": "true",
+                        "example": "true"
+                    },
+                    "data": {
+                        "title": "data",
+                        "type": "array",
+                        "items": {
+                            "example": null
+                        }
+                    },
+                    "message": {
+                        "title": "message",
+                        "description": "success message",
+                        "type": "string",
+                        "readOnly": "true",
+                        "example": "sucesso."
+                    }
+                },
+                "type": "object"
+            },
+            "Movie": {
+                "title": "Movie",
+                "description": "Movie model",
+                "required": [],
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id of Movie",
+                        "type": "integer",
+                        "readOnly": "true",
+                        "example": "1"
+                    },
+                    "title": {
+                        "title": "title",
+                        "description": "title of Movie",
+                        "type": "string",
+                        "readOnly": "true",
+                        "example": "Titanic"
+                    },
+                    "release_date": {
+                        "title": "release_date",
+                        "description": "release date of Movie",
+                        "type": "string",
+                        "format": "date",
+                        "readOnly": "true",
+                        "example": "2002-07-04"
+                    },
+                    "overview": {
+                        "title": "overview",
+                        "description": "overview of Movie",
+                        "type": "overview",
+                        "readOnly": "true",
+                        "example": "Um artista pobre e uma jovem rica se conhecem e se apaixonam na fatídica jornada do Titanic."
+                    },
+                    "genre": {
+                        "title": "genre",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Genre"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "JsonResponseDefault": {
+                "title": "JsonResponseFind",
+                "properties": {
+                    "success": {
+                        "title": "success",
+                        "description": "success find movies",
+                        "type": "boolean",
+                        "readOnly": "true",
+                        "example": "true"
+                    },
+                    "data": {
+                        "title": "data",
+                        "type": "array",
+                        "items": {
+                            "example": null
+                        }
+                    },
+                    "message": {
+                        "title": "message",
+                        "description": "success message",
+                        "type": "string",
+                        "readOnly": "true",
+                        "example": "sucesso."
+                    }
+                },
+                "type": "object"
+            },
+            "JsonResponseFind": {
+                "title": "JsonResponseFind",
+                "properties": {
+                    "success": {
+                        "title": "success",
+                        "description": "success find movies",
+                        "type": "boolean",
+                        "readOnly": "true",
+                        "example": "true"
+                    },
+                    "data": {
+                        "title": "data",
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "title": "id",
+                                    "description": "id of Movie",
+                                    "type": "integer",
+                                    "readOnly": "true",
+                                    "example": "1"
+                                },
+                                "title": {
+                                    "title": "title",
+                                    "description": "title of Movie",
+                                    "type": "string",
+                                    "readOnly": "true",
+                                    "example": "Titanic"
+                                },
+                                "release_date": {
+                                    "title": "release_date",
+                                    "description": "release date of Movie",
+                                    "type": "string",
+                                    "format": "date",
+                                    "readOnly": "true",
+                                    "example": "2002-07-04"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "message": {
+                        "title": "message",
+                        "description": "success message",
+                        "type": "string",
+                        "readOnly": "true",
+                        "example": "Filme encontrado com sucesso."
+                    }
+                },
+                "type": "object"
+            },
+            "JsonResponseFindById": {
+                "title": "JsonResponseFindById",
+                "properties": {
+                    "success": {
+                        "title": "success",
+                        "description": "success find movies",
+                        "type": "boolean",
+                        "readOnly": "true",
+                        "example": "true"
+                    },
+                    "": {
+                        "$ref": "#/components/schemas/Movie"
+                    },
+                    "message": {
+                        "title": "message",
+                        "description": "success message",
+                        "type": "string",
+                        "readOnly": "true",
+                        "example": "Filme encontrado com sucesso."
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "parameters": {
+            "Genre--id": {
+                "name": "genre_id",
+                "in": "path",
+                "description": "Id of Genre",
+                "required": true,
+                "schema": {
+                    "type": "integer",
+                    "example": "1"
+                }
+            },
+            "Movie--id": {
+                "name": "movie_id",
+                "in": "path",
+                "description": "Id of Movie",
+                "required": true,
+                "schema": {
+                    "type": "integer",
+                    "example": "1"
+                }
+            }
+        }
+    }
+}
